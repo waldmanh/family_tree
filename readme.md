@@ -6,7 +6,7 @@
         - flask
         - werkzeug
         - excel2json
-    install command: pip install <package> (run it on anaconda prompt)
+    * [install command: pip install <package> (run it on anaconda prompt)]
 2. config.json in root folder with the following properties:
     * server_name
     * database_name
