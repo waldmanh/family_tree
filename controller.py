@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,send_from_directory
 import bl
 app = Flask(__name__)
 
@@ -14,9 +14,13 @@ def upload_file():
 def uploader_file():
    if request.method == 'POST':
       result = bl.handle_new_excel(request.files['file'])
-      if result=='FALSE':
+      if result=='false':
           return 'error handling file'
-      return result
-		
+      # return result
+      try:
+          return send_from_directory('./', 'result.csv', as_attachment=True)
+          # return send_file('./result.csv',attachment_filename='result.csv')
+      except Exception as e:
+          return str(e)
 if __name__ == '__main__':
    app.run(debug = True)

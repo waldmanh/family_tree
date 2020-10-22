@@ -6,6 +6,9 @@ def handle_new_excel(f):
     file_path = './uploads/'+secure_filename(f.filename)    
     f.save(file_path)
     data = excel_handler.convert_excel_to_json(file_path)
-    cursor = backend.select_from_db(data)
-    result = excel_handler.convert_cursor_to_csv(cursor)
-    return result
+    result = backend.select_from_db(data) 
+    is_success = excel_handler.create_csv_from_result(result)
+    if(is_success=="true"):
+        return "true"
+    else:
+        return "false"
