@@ -1,5 +1,5 @@
-#Readme file
-##A few notes on how to install and operate this app
+# Readme file
+## A few notes on how to install and operate this app
 1. Requirements:
     1.1. SQL Server installed
     1.2. Dependencies installed:
