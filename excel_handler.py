@@ -20,7 +20,7 @@ def convert_json(json_file):
     return data
 
 def create_csv_from_result(result):
-    with open('result.csv', 'w') as csvfile:
+    with open('result.csv', 'w', newline='') as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(['id','first_name', 'last_name'])
         for arr in result:
