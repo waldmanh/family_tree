@@ -24,6 +24,4 @@ def select_from_db(data):
     for row in rows:
         result.append(list(row))
     print(result)
-    # for row in cursor:
-    #     print(row)    
     return result

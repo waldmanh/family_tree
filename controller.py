@@ -16,10 +16,9 @@ def uploader_file():
       result = bl.handle_new_excel(request.files['file'])
       if result=='false':
           return 'error handling file'
-      # return result
+
       try:
           return send_from_directory('./', 'result.csv', as_attachment=True)
-          # return send_file('./result.csv',attachment_filename='result.csv')
       except Exception as e:
           return str(e)
 if __name__ == '__main__':
