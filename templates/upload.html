@@ -9,56 +9,99 @@
   <body>
     <div class="header">
       <h1>The Script Runner</h1>
-      <p>Choose a file and run the script..</p>
-    </div>
-    <div class="topnav">
-      <a href="#">Link</a>
-      <a href="#">Link</a>
-      <a href="#">Link</a>
+      <h2>Choose a file and a script to run on it..</ph2>
     </div>
 
+ <!--   <div class="topnav">-->
+<!--      <a href="#">Link</a>-->
+<!--      <a href="#">Link</a>-->
+<!--      <a href="#">Link</a>-->
+<!--    </div>-->
+
     <div class="row">
-      <div class="column middle">
-        <h2>Choose a file:</h2>
-        <form
-          action="http://localhost:5000/uploader"
+       <form
+          name="runscriptform"
           method="POST"
           enctype="multipart/form-data"
+          onsubmit="runScript()"
         >
+      <div class="column side">
+        <h2>Choose a file:</h2>
           <input
             type="file"
             name="file"
             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
           />
-          <input type="submit" />
-        </form>
-        <p>---------------------------------------------------------</p>
+        
+      </div>
+      <div class="column side">
+        <h2>Choose a script:</h2>
+        <select
+          id="script-select"
+          name="script-select"
+          onchange="changeScriptDescription()"
+        >
+          <option value="noscript">Choose a script</option>
+          <option value="script1">script1</option>
+          <option value="script2">script2</option>
+          <option value="script3">script3</option>
+        </select>
       </div>
 
       <div class="column middle" id="script-selected-description">
-        <h2>Instructions:</h2>
-        <ul>
-          <li>File has to be xlsx type</li>
-          <li>The first sheet contains the date and it's name is "Sheet1"</li>
-          <li>The xlsx file should be in the following structure:</li>
-        </ul>
-        <div class="table">
-          <table>
-            <tr>
-              <th>id</th>
-              <th>data</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>dd/MM/yyyy</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>dd/MM/yyyy</td>
-            </tr>
-          </table>
-        </div>
+        <!-- <p ></p> -->
       </div>
     </div>
+    </form>
+    <script>
+      function changeScriptDescription() {
+        var x = document.getElementById("script-select").value;
+        switch (x) {
+          case "script1":
+            document.getElementById("script-selected-description").innerHTML =
+          ' <h2>Run script:</h2>\
+            <h2><input type="submit" value="Run" id="run-script-submit"/></h2>\
+            <h2>Instructions:</h2>\
+        <ul>\
+          <li>File has to be xlsx type</li>\
+          <li>The first sheet contains the date and it\'s name is "Sheet1"</li>\
+          <li>The xlsx file should be in the following structure:</li>\
+        </ul>\
+        <div class="table">\
+          <table>\
+            <tr>\
+              <th>id</th>\
+              <th>data</th>\
+            </tr>\
+            <tr>\
+              <td>1</td>\
+              <td>dd/MM/yyyy</td>\
+            </tr>\
+            <tr>\
+              <td>2</td>\
+              <td>dd/MM/yyyy</td>\
+            </tr>\
+          </table>\
+        </div>';
+            break;
+          case "script2":
+            document.getElementById("script-selected-description").innerHTML =
+              "script2 was chosen";
+            break;
+          case "script3":
+            document.getElementById("script-selected-description").innerHTML =
+              "script3 was chosen";
+            break;
+        }
+      }
+      function runScript(){
+      
+          var select = document.getElementById('script-select');
+          var scripToRun = select.options[select.selectedIndex].value;
+          document.runscriptform.action = "http://localhost:5000/uploader?scriptToRun="+scripToRun;
+          runscriptform.submit();
+          }      
+      
+    </script>
   </body>
 </html>
