@@ -1,17 +1,64 @@
-<html>
-   <body>
-      <form action = "http://localhost:5000/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-         <p>Instructions: <br>
-         1. File has to be xlsx type <br>
-         2. The first sheet contains the date and it's name is "Sheet1"
-         3. The xlsx file should be in the following structure:
-             id     data 
-             1      dd/MM/yyyy
-             2      dd/MM/yyyy
-         </p>
-      </form>   
-   </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Script Runner</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static/css/upload.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>The Script Runner</h1>
+      <p>Choose a file and run the script..</p>
+    </div>
+    <div class="topnav">
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+    </div>
+
+    <div class="row">
+      <div class="column middle">
+        <h2>Choose a file:</h2>
+        <form
+          action="http://localhost:5000/uploader"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="file"
+            name="file"
+            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          />
+          <input type="submit" />
+        </form>
+        <p>---------------------------------------------------------</p>
+      </div>
+
+      <div class="column middle" id="script-selected-description">
+        <h2>Instructions:</h2>
+        <ul>
+          <li>File has to be xlsx type</li>
+          <li>The first sheet contains the date and it's name is "Sheet1"</li>
+          <li>The xlsx file should be in the following structure:</li>
+        </ul>
+        <div class="table">
+          <table>
+            <tr>
+              <th>id</th>
+              <th>data</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>dd/MM/yyyy</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>dd/MM/yyyy</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
