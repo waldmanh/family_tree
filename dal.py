@@ -3,8 +3,8 @@ import json
 # import excel_handler
 
 def select_from_db(data):
-    with open('d:/projects/python/familytree/config.json') as f:
-        config_data=json.load(f)
+    with open('config.json') as f:
+        config_data=json.load(f)    
     query_where=''
     for item in data:
         query_where+="'"+item["idnum"]+"',"
