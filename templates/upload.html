@@ -5,6 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="static/css/upload.css" />
+    <script src="static/scripts/upload_page_scripts.js"></script>
+    <script src="static/scripts/script_description_title.js"></script>
+    <script src="static/scripts/load_script1.js"></script>
+
   </head>
   <body>
     <div class="header">
@@ -27,12 +31,16 @@
         >
       <div class="column side">
         <h2>Choose a file:</h2>
-          <input
+        <input
             type="file"
             name="file"
             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-          />
-        
+            required="required"
+        />
+        <br>
+        <div class="message-box">
+            <p>MESSAGES PARAGRAPH</p>
+        </div>        
       </div>
       <div class="column side">
         <h2>Choose a script:</h2>
@@ -49,59 +57,9 @@
       </div>
 
       <div class="column middle" id="script-selected-description">
-        <!-- <p ></p> -->
+        <h2>No script was selected ...</h2>      
       </div>
     </div>
     </form>
-    <script>
-      function changeScriptDescription() {
-        var x = document.getElementById("script-select").value;
-        switch (x) {
-          case "script1":
-            document.getElementById("script-selected-description").innerHTML =
-          ' <h2>Run script:</h2>\
-            <h2><input type="submit" value="Run" id="run-script-submit"/></h2>\
-            <h2>Instructions:</h2>\
-        <ul>\
-          <li>File has to be xlsx type</li>\
-          <li>The first sheet contains the date and it\'s name is "Sheet1"</li>\
-          <li>The xlsx file should be in the following structure:</li>\
-        </ul>\
-        <div class="table">\
-          <table>\
-            <tr>\
-              <th>id</th>\
-              <th>data</th>\
-            </tr>\
-            <tr>\
-              <td>1</td>\
-              <td>dd/MM/yyyy</td>\
-            </tr>\
-            <tr>\
-              <td>2</td>\
-              <td>dd/MM/yyyy</td>\
-            </tr>\
-          </table>\
-        </div>';
-            break;
-          case "script2":
-            document.getElementById("script-selected-description").innerHTML =
-              "script2 was chosen";
-            break;
-          case "script3":
-            document.getElementById("script-selected-description").innerHTML =
-              "script3 was chosen";
-            break;
-        }
-      }
-      function runScript(){
-      
-          var select = document.getElementById('script-select');
-          var scripToRun = select.options[select.selectedIndex].value;
-          document.runscriptform.action = "http://localhost:5000/uploader?scriptToRun="+scripToRun;
-          runscriptform.submit();
-          }      
-      
-    </script>
   </body>
 </html>

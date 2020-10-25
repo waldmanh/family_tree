@@ -1,7 +1,6 @@
 import excel2json
 import json
 import csv
-# from werkzeug.utils import secure_filename
 
 def convert_excel_to_json(file_path):
     excel2json.convert_from_file(file_path)
