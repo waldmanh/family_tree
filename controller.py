@@ -19,18 +19,17 @@ def uploader_file():
     script_to_run = str(request.query_string[12:])
     script_to_run = script_to_run[2:-1]
     print(script_to_run)
-    if request.method == 'POST':       
+    if request.method == 'POST':
         if script_to_run == 'script1':
             result = bl.script1(request.files['file'])
             print('result='+result)
             if result == 'false':
-                 return 'error handling file'
+                return 'error handling file'
             try:
-                 return send_from_directory('./', 'result.csv', as_attachment=True)
+                return send_from_directory('./', 'result.csv', as_attachment=True)
             except Exception as e:
-                 return str(e)
+                return str(e)
         elif script_to_run == 'script2':
-            print('script_to_run = '+script_to_run)            
             bl.script2(request.files['file'])
             return send_from_directory('./', 'result.txt', as_attachment=True)
 
